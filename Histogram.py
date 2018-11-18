@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import plotly.plotly as py
+import plotly as py
 import plotly.graph_objs as go
 import plotly.tools as tls
 dictionary = {
@@ -14,15 +14,20 @@ dictionary = {
 N = len(dictionary)
 dictionary_names = [i for i in dictionary]
 c = ['hsl('+str(h)+',50%'+',50%)' for h in np.linspace(0, 360, N)]
-traces = numpy.zeros(len(dictionary))
-for i in range(len(dictionary)):
-    traces[i] = go.Box(y = dictionary[dictionary_names[i]])
+traces = [{
+    'y': dictionary[dictionary_names[i]],
+    'name': dictionary_names[i],
+    'type': 'box',
+    'marker': {'color':c[i]}
+
+
+} for i in range (int(N))]
 
 
 
 
 
-py.iplot(data, filename = 'maymays.html')
+py.offline.plot(traces, filename = 'maymays.html')
 
 """fig, axs = plt.subplots(ncols = len(dictionary), sharey = True)
 axs = axs.ravel()

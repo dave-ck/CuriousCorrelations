@@ -61,17 +61,24 @@ def gradient(valx, valy):
     print(summ(valx*valy))
     print(delta)"""
     return (len(valx)*summ(mult_tup(valx, valy))-summ(valx)*summ(valy))/delta(valx)
+def fin_func():
+    trial_array = np.linspace(0, 100)
+    super_array = np.linspace(0, 100)
+    for i in range(len(trial_array)):
+        super_array[i] = trial_array[i]*gradient(x, y) + intercept(x, y)
 
-trial_array = np.linspace(0, 100)
-super_array = np.linspace(0, 100)
-for i in range(len(trial_array)):
-    super_array[i] = trial_array[i]*gradient(x, y) + intercept(x, y)
+    fig, ax = plt.subplots()
+    ax.plot(trial_array, super_array)
+    ax.scatter(x, y)
+    ax.scatter(xuser, yuser)
+    plotly_fig = tls.mpl_to_plotly(fig)
 
-fig, ax = plt.subplots()
-ax.plot(trial_array, super_array)
-ax.scatter(x, y)
-ax.scatter(xuser, yuser)
-plotly_fig = tls.mpl_to_plotly(fig)
+    plotly.offline.plot(plotly_fig, filename='basic-scatter-plot.html')
+    with open('basic-scatter-plot.html', 'r') as myfile:
+        html_words = myfile.read().replace("\n", '')
+    #print(html_words)
+    return html_words
+fin_func()
 
-plotly.offline.plot(plotly_fig, filename='basic-scatter-plot.html')
+
 
