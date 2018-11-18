@@ -67,7 +67,7 @@ def fin_func(varXName, varYName):
 
 
     layout = go.Layout(
-        title = "Plot of " + str(varXName)+ " against " + str(varYName),
+        title = "Plot of:\n" + str(varXName)+ " against \n" + str(varYName),
         xaxis = dict(
             title = str(varXName),
             titlefont=dict(
@@ -85,9 +85,9 @@ def fin_func(varXName, varYName):
 
     )
     trace1 = go.Scatter(x=x, y=y,  mode = "markers",  name = str(varXName) + " and " + str(varYName))
-    trace2 = go.Scatter(x=xuser, y=yuser, mode = "markers")
+    #trace2 = go.Scatter(x=xuser, y=yuser, mode = "markers")
     trace3 = go.Scatter(x = trial_array, y = super_array, name = "Linear Correlation Line")
-    data = [trace1, trace2, trace3]
+    data = [trace1, trace3]# trace3]
     plotly_fig = go.Figure(data=data, layout=layout)
     plotly.offline.plot(plotly_fig, show_link = False, filename='basic-scatter-plot.html',)
     with open('basic-scatter-plot.html', 'r') as myfile:
