@@ -7,12 +7,6 @@ import jsonReader
 #import ipywidgets as widgets
 #values is the input that DCK will input from the JSON file
 
-l = 1
-h = 100
-xuser = 10
-yuser = 100
-values = [(random.randint(l, h), random.randint(l, h)) for k in range(1500)]
-x, y = zip(*values) #splits the tuples in values into two lists, x and y
 
 def mean(vals):
     sum = 0
@@ -28,25 +22,15 @@ def mean(vals):
 What follows is a ckassical linear approximation of a good trendline, using the method
 of least squares as presentedin the textbook Uncertainities and their Measurements
 by Ifan Hugh and Thomas Hase, page 74
-
-
-
 """
 
 
-def summ(vals):
-    summ = 0
-    for i in range(len(vals)):
-        summ += vals[i]
-    return summ
-
-
 def delta(vals):
-    return len(vals)*summ(mult_tup(vals, vals)) - (summ(vals))**2
+    return len(vals)*sum(mult_tup(vals, vals)) - (sum(vals))**2
 
 
 def intercept(valx, valy):
-    return (summ(mult_tup(valx, valx))*summ(valy)-summ(valx)*summ(mult_tup(valx, valy)))/delta(valx)
+    return (sum(mult_tup(valx, valx))*sum(valy)-sum(valx)*sum(mult_tup(valx, valy)))/delta(valx)
 
 def mult_tup(x, y):
     m = np.zeros(len(x))
@@ -60,13 +44,18 @@ def gradient(valx, valy):
     print(valy)
     print(summ(valx*valy))
     print(delta)"""
-    return (len(valx)*summ(mult_tup(valx, valy))-summ(valx)*summ(valy))/delta(valx)
+    return (len(valx)*sum(mult_tup(valx, valy))-sum(valx)*sum(valy))/delta(valx)
 
 def fin_func(varXName, varYName):
     #make values by calling
-    # values = jsonReader.getDataCollection(varXName, varyYName)
-    trial_array = np.linspace(0, 100)
-    super_array = np.linspace(0, 100)
+    values = jsonReader.getDataCollection(varXName, varyYName)
+
+    xuser = varXName
+    yuser = varYName
+    x, y = zip(*values)  # splits the tuples in values into two lists, x and y
+
+    trial_array = np.linspace(0,max(x))
+    super_array = np.linspace(0,max(x))
     for i in range(len(trial_array)):
         super_array[i] = trial_array[i]*gradient(x, y) + intercept(x, y)
 
@@ -83,7 +72,7 @@ def fin_func(varXName, varYName):
     return html_words
 
 
-fin_func()
+#fin_func(varXName, varYName)
 
 
 
