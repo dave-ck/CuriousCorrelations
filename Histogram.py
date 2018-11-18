@@ -13,8 +13,9 @@ dictionary = {
 }
 N = len(dictionary)
 dictionary_names = [i for i in dictionary]
-c = ['hsl('+str(h)+',50%'+',50%)' for h in np.linspace(0, 360, N)]
-traces = [{
+def plottingBox():
+    c = ['hsl('+str(h)+',50%'+',50%)' for h in np.linspace(0, 360, N)]
+    traces = [{
     'y': dictionary[dictionary_names[i]],
     'name': dictionary_names[i],
     'type': 'box',
@@ -27,7 +28,10 @@ traces = [{
 
 
 
-py.offline.plot(traces, filename = 'maymays.html')
+    py.offline.plot(traces, filename = 'boxplot.html')
+    with open('boxplot.html', 'r') as myfile:
+        box_html = myfile.read().replace('\n', '')
+    return box_html
 
 """fig, axs = plt.subplots(ncols = len(dictionary), sharey = True)
 axs = axs.ravel()
