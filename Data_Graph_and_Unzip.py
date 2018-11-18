@@ -3,6 +3,7 @@ import numpy as np
 import plotly
 import plotly.tools as tls
 import random
+import jsonReader
 #import ipywidgets as widgets
 #values is the input that DCK will input from the JSON file
 
@@ -60,7 +61,10 @@ def gradient(valx, valy):
     print(summ(valx*valy))
     print(delta)"""
     return (len(valx)*summ(mult_tup(valx, valy))-summ(valx)*summ(valy))/delta(valx)
-def fin_func():
+
+def fin_func(varXName, varYName):
+    #make values by calling
+    # values = jsonReader.getDataCollection(varXName, varyYName)
     trial_array = np.linspace(0, 100)
     super_array = np.linspace(0, 100)
     for i in range(len(trial_array)):

@@ -20,5 +20,5 @@ def grapher(request):
     print("Var 1:", var1, ", var2:", var2)
     f = open("basic-scatter-plot.html", "r")
     dingusHTMLString = f.read()
-    return HttpResponse(HTMLmaker.splice(dingusHTMLString))
+    return HttpResponse(HTMLmaker.splice(Data_Graph_and_Unzip.fin_func(var1, var2)))
 
