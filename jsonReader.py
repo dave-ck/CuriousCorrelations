@@ -72,21 +72,17 @@ def addPatient(filename):
                 height = max(height, i["resource"]["valueQuantity"]["value"])
             elif i["resource"]["code"]["text"] == "Body Mass Index":
                 bmi = max(bmi, i["resource"]["valueQuantity"]["value"])
-    print("Weight: ", weight, " Height: ", height, "BMI: ", bmi)
     if weight != 0:
-        patientAttributes.update({"weight":weight})
+        patientAttributes.update({"weight" : weight})
     if height != 0:
-        patientAttributes.update({"height":height})
+        patientAttributes.update({"height" : height})
     if bmi != 0:
-        patientAttributes.update({"bmi":bmi})
+        patientAttributes.update({"bmi" : bmi})
     patientAttributes.update({"AllergyIntoleranceNumber": len(patientDict["AllergyIntolerances"])})
     patientAttributes.update({"ImmunizationNumber": len(patientDict["Immunizations"])})
 
     patients.append(patientAttributes)
 
-
-
-addPatient("fhir/Abshire734_Alfred968_16.json")
 
 def populate():
     for i in os.listdir("fhir")[:900]:  # for the first 100 patients in the dataset
@@ -96,13 +92,16 @@ def populate():
 def getDataCollection(varx, vary):
     collection = []
     for i in patients:
-        collection.append((i[varx], i[vary]))
+        if varx in i and vary in i:
+            collection.append((i[varx], i[vary]))
     return collection
 
 def getMetaData(varx, vary):
     return None
 
 populate()
+
+print(getDataCollection("weight", "height"))
 #TODO - read birthdate in as date not String
 
 discreteValues = ["gender", "multipleBirthBoolean", "maritalStatus", "languageCode", "country"]
