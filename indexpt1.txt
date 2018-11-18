@@ -46,7 +46,6 @@
 	<div class="dropdown horizbutton">
 		<select name="y-variables" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
 			<option value="ydefault">Y Variable</option>
-			<div class="dropdown-divider"></div>
 			<option value="birthYear">Birth Year</option>
 			<option value="AllergyIntoleranceNumber">No. of Allergies</option>
 			<option value="ImmunizationNumber">No. of Immunizations</option>

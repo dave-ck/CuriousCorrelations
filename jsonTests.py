@@ -7,9 +7,10 @@ resourceTypes = {'CarePlan', 'Organization', 'Condition', 'MedicationRequest', '
                  'Patient',
                  'Observation', 'DiagnosticReport', 'Immunization', 'Claim', 'AllergyIntolerance'}
 
+
 def addPatient(filename):
     patientDict = {"PatientInfo": None, "Procedures": [], "Immunizations": [], "Conditions": [],
-                   "DiagnosticReports": [], "AllergyIntolerances": [], "Observations":[]}
+                   "DiagnosticReports": [], "AllergyIntolerances": [], "Observations": []}
     jsonFile = open(filename, "r")
     jsonString = jsonFile.read()
     dict = json.loads(jsonString)
@@ -40,7 +41,7 @@ def addPatient(filename):
         if i in patientDict["PatientInfo"]:
             patientAttributes.update({i: patientDict["PatientInfo"][i]})
 
-    patientAttributes.update(({'birthYear':int(patientDict["PatientInfo"]["birthDate"][:4])}))
+    patientAttributes.update(({'birthYear': int(patientDict["PatientInfo"]["birthDate"][:4])}))
 
     # marital status
     patientAttributes.update({'maritalStatus': patientDict["PatientInfo"]["maritalStatus"]["text"]})
@@ -51,16 +52,12 @@ def addPatient(filename):
         if "country" in i:
             patientAttributes.update({"country": i["country"]})
         # TODO extract latitude, longitude
-        """
-        for j in i:
-            if "extension" in j:
-                for k in j["extension"]:
-                    print(k)
-                    if "extension" in k:
-                        print(k)
-                    print(j["valueDecimal"])
-                    patientAttributes.update({"latitude":j["valueDecimal"]})
-        """
+
+    patientAttributes.update({"AllergyIntoleranceNumber": len(patientDict["AllergyIntolerances"])})
+    patientAttributes.update({"ImmunizationNumber": len(patientDict["Immunizations"])})
+
+    patients.append(patientAttributes)
+    print(patientDict["Observations"])
     weight = 0
     height = 0
     bmi = 0
@@ -79,31 +76,15 @@ def addPatient(filename):
         patientAttributes.update({"height":height})
     if bmi != 0:
         patientAttributes.update({"bmi":bmi})
-    patientAttributes.update({"AllergyIntoleranceNumber": len(patientDict["AllergyIntolerances"])})
-    patientAttributes.update({"ImmunizationNumber": len(patientDict["Immunizations"])})
-
-    patients.append(patientAttributes)
-
 
 
 addPatient("fhir/Abshire734_Alfred968_16.json")
 
-def populate():
-    for i in os.listdir("fhir")[:900]:  # for the first 100 patients in the dataset
-        addPatient("fhir/" + i)
 
-
-def getDataCollection(varx, vary):
-    collection = []
-    for i in patients:
-        collection.append((i[varx], i[vary]))
-    return collection
-
-def getMetaData(varx, vary):
-    return None
-
-populate()
-#TODO - read birthdate in as date not String
+# TODO - read birthdate in as date not String
 
 discreteValues = ["gender", "multipleBirthBoolean", "maritalStatus", "languageCode", "country"]
-continuousValues = ["birthYear", "AllergyIntoleranceNumber", "ImmunizationNumber", "weight", "height", "bmi"]
+continuousValues = ["birthYear", "AllergyIntoleranceNumber", "ImmunizationNumber"]
+
+for i in patients:
+    print(i["birthYear"])

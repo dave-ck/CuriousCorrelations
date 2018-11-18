@@ -93,6 +93,7 @@ def fin_func(varXName, varYName):
     with open('basic-scatter-plot.html', 'r') as myfile:
         html_words = myfile.read().replace("\n", '')
     print(html_words)
+
     return html_words
 
 

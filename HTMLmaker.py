@@ -12,3 +12,4 @@ def splice(graphhtml):
 
     htmlstring = firsthtml + graphhtml + secondhtml
     return htmlstring
+
