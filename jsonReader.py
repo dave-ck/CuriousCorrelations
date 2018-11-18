@@ -89,7 +89,8 @@ def getMetaData(varx, vary):
 
 print(getDataCollection("AllergyIntoleranceNumber", "ImmunizationNumber"))
 
+
 #TODO - read birthdate in as date not String
 
 discreteValues = ["gender", "multipleBirthBoolean", "maritalStatus", "languageCode", "country"]
-continuousValues = ["birthDate", "AllergyIntoleranceNumber", "ImmunizationNumber"]
+continuousValues = ["birthYear", "AllergyIntoleranceNumber", "ImmunizationNumber"]
