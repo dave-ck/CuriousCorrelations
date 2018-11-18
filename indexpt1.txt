@@ -3,16 +3,14 @@
 	<head>
 		<title>TPP data graphing</title>
 		<meta charset="utf-8">
-		<link rel="icon" href="tpp.jpg">
 		<!-- Plotly python library links (may need to download to server)-->
-		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+		<style id="plotly.js-style-global"></style>
+		<style id="plotly.js-style-modebar-edabb8"></style>
 		<!-- Bootstrap link -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-		<!-- <link href="styleoverride.css" rel="stylesheet"> -->
 		<style>
 .bg-success, .btn-success, .btn-outline-success{background-color:#00c21c!important}
 .btn-success{background-color:#00c21c;border-color:#00c21c}
-
 .horizbutton { display: inline-block; margin-left:10px;}
 		</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -25,7 +23,7 @@
 	<a class="navbar-brand" href="#"><h1>TPP Graphs</h1></a>
 	<ul class="navbar-nav ml-auto">
 		<li class="nav-item">
-			<a class="nav-link" href="#">About</a>
+			<a class="nav-link" href="https://curiouscorrelations.herokuapp.com/about">About</a>
 		</li>
 		<li class="nav-item active">
 			<a class="nav-link" href="#">Graphing Correlations</a>
@@ -47,35 +45,25 @@
 			<option value="birthYear">Birth Year</option>
 			<option value="AllergyIntoleranceNumber">No. of Allergies</option>
 			<option value="ImmunizationNumber">No. of Immunizations</option>
+			<option value="bmi">BMI</option>
+			<option value="height">Height</option>
+			<option value="weight">Weight</option>
 		</select>
 	</div>
 	<div class="dropdown horizbutton">
 		<select name="y-variables" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
 			<option value="ydefault">Y Variable</option>
+			<div class="dropdown-divider"></div>
 			<option value="birthYear">Birth Year</option>
 			<option value="AllergyIntoleranceNumber">No. of Allergies</option>
 			<option value="ImmunizationNumber">No. of Immunizations</option>
+			<option value="bmi">BMI</option>
+			<option value="height">Height</option>
+			<option value="weight">Weight</option>
 		</select>
 	</div>
 		<input type="submit" class="btn btn-success horizbutton">
 	</form>
 </div>
-		
+
 		<div>
-			
-		</div>
-	</div>
-</div>
-<script>
-$('#search').submit(function(e) {
-	var x = $('[name=x-variables]').val();
-	var y = $('[name=y-variables]').val();
-	if (x == "xdefault" || y == "ydefault") {
-		e.preventDefault();
-	}
-	console.log(x);
-	console.log(y);
-});
-</script>
-</body>
-</html>
