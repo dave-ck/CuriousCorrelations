@@ -55,8 +55,8 @@ def fin_func(varXName, varYName):
     yuser = (0,0) #varYName
     x, y = zip(*values)  # splits the tuples in values into two lists, x and y
 
-    trial_array = np.linspace(0,max(x))
-    super_array = np.linspace(0,max(x))
+    trial_array = np.linspace(min(x),max(x))
+    super_array = np.linspace(min(x),max(x))
     for i in range(len(trial_array)):
         super_array[i] = trial_array[i]*gradient(x, y) + intercept(x, y)
 
