@@ -4,7 +4,7 @@ from django.http import HttpResponse
 import helloWorld
 
 def home(request):
-    return HttpResponse('<h1>Home</h1>')
+    return render(request, 'graph/home.html')
 
 def about(request):
     return HttpResponse('<h1>About</h1>')
