@@ -97,7 +97,5 @@ def fin_func(varXName, varYName):
     return html_words
 
 
-fin_func("AllergyIntoleranceNumber", "ImmunizationNumber")
-
 
 

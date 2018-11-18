@@ -101,7 +101,6 @@ def getMetaData(varx, vary):
 
 populate()
 
-print(getDataCollection("weight", "height"))
 #TODO - read birthdate in as date not String
 
 discreteValues = ["gender", "multipleBirthBoolean", "maritalStatus", "languageCode", "country"]
