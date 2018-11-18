@@ -4,7 +4,7 @@
 		<title>CuriousCorrelations</title>
 		<meta charset="utf-8">
 		<!-- Plotly python library links (may need to download to server)-->
-		<link rel="icon" href="/ttp.ico">
+		<link rel="shortcut icon" href="/ttp.ico" type="image/x-icon">
 		<style id="plotly.js-style-global"></style>
 		<style id="plotly.js-style-modebar-edabb8"></style>
 		<!-- Bootstrap link -->
