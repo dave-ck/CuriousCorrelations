@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import plotly
 import plotly.tools as tls
-import random
+import plotly.graph_objs as go
+#import random
 import jsonReader
 #import ipywidgets as widgets
 #values is the input that DCK will input from the JSON file
@@ -48,9 +49,10 @@ def gradient(valx, valy):
 
 def fin_func(varXName, varYName):
     #make values by calling
-    values = jsonReader.getDataCollection(varXName, varyYName)
-    xuser = varXName
-    yuser = varYName
+    values = jsonReader.getDataCollection(varXName, varYName)
+
+    xuser = (0, 0) #varXName
+    yuser = (0,0) #varYName
     x, y = zip(*values)  # splits the tuples in values into two lists, x and y
 
     trial_array = np.linspace(0,max(x))
@@ -62,16 +64,39 @@ def fin_func(varXName, varYName):
     ax.plot(trial_array, super_array)
     ax.scatter(x, y)
     ax.scatter(xuser, yuser)
-    plotly_fig = tls.mpl_to_plotly(fig)
 
-    plotly.offline.plot(plotly_fig, filename='basic-scatter-plot.html')
+
+    layout = go.Layout(
+        title = "Plot of " + str(varXName)+ " against " + str(varYName),
+        xaxis = dict(
+            title = str(varXName),
+            titlefont=dict(
+                family = 'Oswald, monospace',
+                size = 18
+             ),
+        ),
+        yaxis = dict(
+            title=str(varYName),
+            titlefont=dict(
+                family='Oswald, monospace',
+                size=18
+        )
+    )
+
+    )
+    trace1 = go.Scatter(x=x, y=y,  mode = "markers",  name = str(varXName) + " and " + str(varYName))
+    trace2 = go.Scatter(x=xuser, y=yuser, mode = "markers")
+    trace3 = go.Scatter(x = trial_array, y = super_array, name = "Linear Correlation Line")
+    data = [trace1, trace2, trace3]
+    plotly_fig = go.Figure(data=data, layout=layout)
+    plotly.offline.plot(plotly_fig, show_link = False, filename='basic-scatter-plot.html',)
     with open('basic-scatter-plot.html', 'r') as myfile:
         html_words = myfile.read().replace("\n", '')
     print(html_words)
     return html_words
 
 
-#fin_func("AllergyIntoleranceNumber", "ImmunizationNumber")
+fin_func("AllergyIntoleranceNumber", "ImmunizationNumber")
 
 
 
