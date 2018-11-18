@@ -25,6 +25,7 @@ SECRET_KEY = ')sj7*fpa@_oy01!!9!j-na6cx0v#0xp(h5uz6qc^rz5ch=jnop'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#This is a comment
 ALLOWED_HOSTS = ['http://curiouscorrelations.herokuapp.com/']
 
 
