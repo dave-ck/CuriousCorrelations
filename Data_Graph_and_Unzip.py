@@ -4,7 +4,6 @@ import plotly
 import plotly.tools as tls
 import random
 #import ipywidgets as widgets
-from IPython.display import display
 #values is the input that DCK will input from the JSON file
 
 l = 1
@@ -76,8 +75,10 @@ def fin_func():
     plotly.offline.plot(plotly_fig, filename='basic-scatter-plot.html')
     with open('basic-scatter-plot.html', 'r') as myfile:
         html_words = myfile.read().replace("\n", '')
-    #print(html_words)
+    print(html_words)
     return html_words
+
+
 fin_func()
 
 

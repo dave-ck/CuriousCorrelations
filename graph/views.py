@@ -9,9 +9,16 @@ def home(request):
     return render(request, 'graph/home.html')
 
 def about(request):
-    return HttpResponse('<h1>About</h1>')
+    f = open("about.html", "r")
+    htmlboi = f.read()
+    return HttpResponse(htmlboi)
+        #'<h1>About the bois</h1>')
 
-def counter(request, num_one='x', num_two='y'):
-    f = open("basic-scatter-and-plot.html", "r")
+def grapher(request):
+    var1 = request.GET.get("first", "")
+    var2 = request.GET.get("second", "")
+    print("Var 1:", var1, ", var2:", var2)
+    f = open("basic-scatter-plot.html", "r")
     dingusHTMLString = f.read()
     return HttpResponse(HTMLmaker.splice(dingusHTMLString))
+
