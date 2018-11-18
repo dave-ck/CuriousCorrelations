@@ -1,3 +1,4 @@
 import numpy
 import random
-print("hello fucko")
+def prod(a,b):
+    return a*b
