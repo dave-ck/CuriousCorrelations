@@ -1,19 +1,20 @@
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import numpy as np
 import plotly as py
 import plotly.graph_objs as go
 import plotly.tools as tls
-dictionary = {
+"""dictionary = {
     'A' : [12, 14.8, 16, 20],
     'B' : [1],
     'c' : [12, 2, 14, 10],
     'd' : [12, 2, 4, 5],
     '3' : [1, 3, 4, 5]
 
-}
-N = len(dictionary)
-dictionary_names = [i for i in dictionary]
-def plottingBox():
+}"""
+
+def plottingBox(dictionary):
+    N = len(dictionary)
+    dictionary_names = [i for i in dictionary]
     c = ['hsl('+str(h)+',50%'+',50%)' for h in np.linspace(0, 360, N)]
     traces = [{
     'y': dictionary[dictionary_names[i]],
@@ -22,12 +23,7 @@ def plottingBox():
     'marker': {'color':c[i]}
 
 
-} for i in range (int(N))]
-
-
-
-
-
+    } for i in range (int(N))]
     py.offline.plot(traces, filename = 'boxplot.html')
     with open('boxplot.html', 'r') as myfile:
         box_html = myfile.read().replace('\n', '')
