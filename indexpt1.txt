@@ -27,12 +27,12 @@
 <div class="container">
 	<div class="row py-4">
 		<div class="col-sm-6">
-			<form action="/">
+			<form action="/grapher/">
 			<div class="dropdown">
 				<select name="first" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-					<option value="weight">weight</option>
+					<option value="weight">AllergyIntoleranceNumber</option>
 					<option value="bmi">bmi</option>
-					<option value="height">height</option>
+					<option value="height">ImmunizationNumber</option>
 				</select>
 			</div>
 			<br>
