@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>TPP data graphing</title>
+		<title>CuriousCorrelations</title>
 		<meta charset="utf-8">
 		<!-- Plotly python library links (may need to download to server)-->
+		<link rel="icon" href="/ttp.jpg">
 		<style id="plotly.js-style-global"></style>
 		<style id="plotly.js-style-modebar-edabb8"></style>
 		<!-- Bootstrap link -->
@@ -20,7 +21,7 @@
 
 <body>
 <nav class="navbar navbar-expand-sm bg-success navbar-dark">
-	<a class="navbar-brand" href="#"><h1>TPP Graphs</h1></a>
+	<a class="navbar-brand" href="#"><h1>Curious Correlations</h1></a>
 	<ul class="navbar-nav ml-auto">
 		<li class="nav-item">
 			<a class="nav-link" href="/about">About</a>
