@@ -71,7 +71,6 @@ for i in patientDict:
 """
 
 resourceTypes = {1}
-print("fhir/"+os.listdir("fhir")[563])
 for i in os.listdir("fhir")[:900]:  # for the first 100 patients in the dataset
     addPatient("fhir/" + i)
 
@@ -82,4 +81,15 @@ def getDataCollection(varx, vary):
         collection.append((i[varx], i[vary]))
     return collection
 
+for i in patients[0]:
+    print(i)
+
+def getMetaData(varx, vary):
+    return None
+
 print(getDataCollection("AllergyIntoleranceNumber", "ImmunizationNumber"))
+
+#TODO - read birthdate in as date not String
+
+discreteValues = ["gender", "multipleBirthBoolean", "maritalStatus", "languageCode", "country"]
+continuousValues = ["birthDate", "AllergyIntoleranceNumber", "ImmunizationNumber"]
