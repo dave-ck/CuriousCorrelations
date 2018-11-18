@@ -10,7 +10,7 @@ def home(request):
         #render(request, 'graph/home.html')
 
 def about(request):
-    f = open("about.html", "r")
+    f = open("aboutpage.html", "r")
     htmlboi = f.read()
     return HttpResponse(htmlboi)
         #'<h1>About the bois</h1>')
