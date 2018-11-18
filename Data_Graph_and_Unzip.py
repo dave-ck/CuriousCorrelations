@@ -42,24 +42,29 @@ def summ(vals):
 
 
 def delta(vals):
-    return len(vals)*summ(vals**2) - (summ(vals))**2
+    return len(vals)*summ(mult_tup(vals, vals)) - (summ(vals))**2
 
 
 def intercept(valx, valy):
-    return (summ(valx**2)*summ(valy)-summ(valx)*summ(valx*valy))/delta(valx)
+    return (summ(mult_tup(valx, valx))*summ(valy)-summ(valx)*summ(mult_tup(valx, valy)))/delta(valx)
 
+def mult_tup(x, y):
+    m = np.zeros(len(x))
+    for i in range(len(x)):
+        m[i] = x[i]*y[i]
+    return m
 
 
 def gradient(valx, valy):
-    print(valx)
+    """print(valx)
     print(valy)
     print(summ(valx*valy))
-    print(delta)
-    return (len(valx)*summ(valx*valy)-summ(valx)*summ(valy))/delta(valx)
+    print(delta)"""
+    return (len(valx)*summ(mult_tup(valx, valy))-summ(valx)*summ(valy))/delta(valx)
 
-trial_array = np.linspace(0, len(values))
-super_array = np.linspace(0, len(values))
-"""for i in range(len(trial_array)):
+trial_array = np.linspace(0, 100)
+super_array = np.linspace(0, 100)
+for i in range(len(trial_array)):
     super_array[i] = trial_array[i]*gradient(x, y) + intercept(x, y)
 
 fig, ax = plt.subplots()
@@ -70,4 +75,3 @@ plotly_fig = tls.mpl_to_plotly(fig)
 
 plotly.offline.plot(plotly_fig, filename='basic-scatter-plot.html')
 
-"""
