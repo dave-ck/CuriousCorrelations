@@ -3,12 +3,18 @@
 	<head>
 		<title>TPP data graphing</title>
 		<meta charset="utf-8">
+		<link rel="icon" href="tpp.jpg">
 		<!-- Plotly python library links (may need to download to server)-->
-		<style id="plotly.js-style-global"></style>
-		<style id="plotly.js-style-modebar-edabb8"></style>
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 		<!-- Bootstrap link -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-		<link href="styleoverride.css" rel="stylesheet">
+		<!-- <link href="styleoverride.css" rel="stylesheet"> -->
+		<style>
+.bg-success, .btn-success, .btn-outline-success{background-color:#00c21c!important}
+.btn-success{background-color:#00c21c;border-color:#00c21c}
+
+.horizbutton { display: inline-block; margin-left:10px;}
+		</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -54,5 +60,22 @@
 		<input type="submit" class="btn btn-success horizbutton">
 	</form>
 </div>
-
+		
 		<div>
+			
+		</div>
+	</div>
+</div>
+<script>
+$('#search').submit(function(e) {
+	var x = $('[name=x-variables]').val();
+	var y = $('[name=y-variables]').val();
+	if (x == "xdefault" || y == "ydefault") {
+		e.preventDefault();
+	}
+	console.log(x);
+	console.log(y);
+});
+</script>
+</body>
+</html>
