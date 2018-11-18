@@ -9,7 +9,7 @@ resourceTypes = {'CarePlan', 'Organization', 'Condition', 'MedicationRequest', '
 
 def addPatient(filename):
     patientDict = {"PatientInfo": None, "Procedures": [], "Immunizations": [], "Conditions": [],
-                   "DiagnosticReports": [], "AllergyIntolerances": []}
+                   "DiagnosticReports": [], "AllergyIntolerances": [], "Observations":[]}
     jsonFile = open(filename, "r")
     jsonString = jsonFile.read()
     dict = json.loads(jsonString)
@@ -26,18 +26,21 @@ def addPatient(filename):
             patientDict["DiagnosticReports"].append(i)
         elif i["resource"]["resourceType"] == "AllergyIntolerance":
             patientDict["AllergyIntolerances"].append(i)
+        elif i["resource"]["resourceType"] == "Observation":
+            patientDict["Observations"].append(i)
         elif not i["resource"]["resourceType"] in {'CarePlan', 'Organization', 'Encounter', 'Goal',
-                                                   'Observation', 'Claim', 'MedicationRequest'}:
+                                                   'Claim', 'MedicationRequest'}:
             print("Problem! Resource type", i["resource"]["resourceType"], "not caught in if statement!")
 
     # at this stage, a *slightly* more usable dict has been generated - resources split by type
 
     # below : assign attributes from each resource type to the patient
     patientAttributes = {}
-    for i in ['gender', 'birthDate', 'multipleBirthBoolean']:
+    for i in ['gender', 'multipleBirthBoolean']:
         if i in patientDict["PatientInfo"]:
             patientAttributes.update({i: patientDict["PatientInfo"][i]})
-    # TODO calculate age maybe
+
+    patientAttributes.update(({'birthYear':int(patientDict["PatientInfo"]["birthDate"][:4])}))
 
     # marital status
     patientAttributes.update({'maritalStatus': patientDict["PatientInfo"]["maritalStatus"]["text"]})
@@ -62,18 +65,14 @@ def addPatient(filename):
     patientAttributes.update({"ImmunizationNumber": len(patientDict["Immunizations"])})
     patients.append(patientAttributes)
 
+    for i in patientDict["Observations"]:
+        print(i)
 
+addPatient("fhir/Abshire734_Alfred968_16.json")
 
-"""
-
-for i in patientDict:
-   print(i, ": ", len(patientDict[i]), "entries")
-"""
-
-resourceTypes = {1}
-print("fhir/"+os.listdir("fhir")[563])
-for i in os.listdir("fhir")[:900]:  # for the first 100 patients in the dataset
-    addPatient("fhir/" + i)
+def populate():
+    for i in os.listdir("fhir")[:900]:  # for the first 100 patients in the dataset
+        addPatient("fhir/" + i)
 
 
 def getDataCollection(varx, vary):
@@ -82,4 +81,14 @@ def getDataCollection(varx, vary):
         collection.append((i[varx], i[vary]))
     return collection
 
-print(getDataCollection("AllergyIntoleranceNumber", "ImmunizationNumber"))
+def getMetaData(varx, vary):
+    return None
+
+
+#TODO - read birthdate in as date not String
+
+discreteValues = ["gender", "multipleBirthBoolean", "maritalStatus", "languageCode", "country"]
+continuousValues = ["birthYear", "AllergyIntoleranceNumber", "ImmunizationNumber"]
+
+for i in patients:
+    print(i["birthYear"])

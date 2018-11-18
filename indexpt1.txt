@@ -3,6 +3,9 @@
 	<head>
 		<title>TPP data graphing</title>
 		<meta charset="utf-8">
+		<!-- Plotly python library links (may need to download to server)-->
+		<style id="plotly.js-style-global"></style>
+		<style id="plotly.js-style-modebar-edabb8"></style>
 		<!-- Bootstrap link -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 		<link href="styleoverride.css" rel="stylesheet">
@@ -24,35 +27,33 @@
 	</ul>
 </nav>
 
-<div class="container">
-	<div class="row py-4">
-		<div class="col-sm-6">
-			<form action="/">
-			<div class="dropdown">
-				<select name="first" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-					<option value="weight">weight</option>
-					<option value="bmi">bmi</option>
-					<option value="height">height</option>
-				</select>
-			</div>
-			<br>
-			<div class="dropdown">
-				<select name="second" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-					<option value="weight">weight</option>
-					<option value="bmi">bmi</option>
-					<option value="height">height</option>
-				</select>
-			</div>
-			<br>
-				<input type="submit" class="btn btn-success">
-			</form>
-
-
-			</div>
-
-		</div>
-		<div class="col-sm-6">
-
-		</div>
+<div class="container py-4">
+	<form id='search' action="/grapher">
+	<div class="dropdown horizbutton">
+		<select name="x-variables" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+			<option value="xdefault">X Variable</option>
+			<div class="dropdown-divider"></div>
+			<option value="gender">Gender</option>
+			<option value="multipleBirthBoolean">Multiple Birth Y/N</option>
+			<option value="maritalStatus">Married Y/N</option>
+			<option value="languageCode">Language</option>
+			<option value="country">Country</option>
+			<option value="birthYear">Birth Year</option>
+			<option value="AllergyIntoleranceNumber">No. of Allergies</option>
+			<option value="ImmunizationNumber">No. of Immunizations</option>
+		</select>
+	</div>
+	<div class="dropdown horizbutton">
+		<select name="y-variables" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+			<option value="ydefault">Y Variable</option>
+			<div class="dropdown-divider"></div>
+			<option value="birthYear">Birth Year</option>
+			<option value="AllergyIntoleranceNumber">No. of Allergies</option>
+			<option value="ImmunizationNumber">No. of Immunizations</option>
+		</select>
+	</div>
+		<input type="submit" class="btn btn-success horizbutton">
+	</form>
+</div>
 
 		<div>

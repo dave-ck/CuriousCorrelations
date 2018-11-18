@@ -1,6 +1,16 @@
-        </div>
+		</div>
 	</div>
 </div>
-
+<script>
+$('#search').submit(function(e) {
+	var x = $('[name=x-variables]').val();
+	var y = $('[name=y-variables]').val();
+	if (x == "xdefault" || y == "ydefault") {
+		e.preventDefault();
+	}
+	console.log(x);
+	console.log(y);
+});
+</script>
 </body>
 </html>
