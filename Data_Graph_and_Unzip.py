@@ -49,7 +49,6 @@ def gradient(valx, valy):
 def fin_func(varXName, varYName):
     #make values by calling
     values = jsonReader.getDataCollection(varXName, varyYName)
-
     xuser = varXName
     yuser = varYName
     x, y = zip(*values)  # splits the tuples in values into two lists, x and y
