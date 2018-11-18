@@ -11,9 +11,9 @@ def home(request):
 
 def about(request):
     f = open("aboutpage.html", "r")
+    print("about page loaded")
     htmlboi = f.read()
     return HttpResponse(htmlboi)
-        #'<h1>About the bois</h1>')
 
 
 def grapher(request):
