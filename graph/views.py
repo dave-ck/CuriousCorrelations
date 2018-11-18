@@ -6,7 +6,7 @@ import HTMLmaker
 import Data_Graph_and_Unzip
 
 def home(request):
-    return HttpResponse(HTMLmaker.splice("<body><p>This is the home page </p></body>"))
+    return HttpResponse(HTMLmaker.splice("<body><p></p></body>"))
         #render(request, 'graph/home.html')
 
 def about(request):
