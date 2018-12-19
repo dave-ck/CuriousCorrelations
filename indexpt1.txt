@@ -39,7 +39,6 @@
 			<option value="xdefault">X Variable</option>
 			<div class="dropdown-divider"></div>
 			<option value="gender">Gender</option>
-			<option value="multipleBirthBoolean">Multiple Birth Y/N</option>
 			<option value="maritalStatus">Married Y/N</option>
 			<option value="languageCode">Language</option>
 			<option value="country">Country</option>

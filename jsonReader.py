@@ -7,9 +7,10 @@ resourceTypes = {'CarePlan', 'Organization', 'Condition', 'MedicationRequest', '
                  'Patient',
                  'Observation', 'DiagnosticReport', 'Immunization', 'Claim', 'AllergyIntolerance'}
 
+
 def addPatient(filename):
     patientDict = {"PatientInfo": None, "Procedures": [], "Immunizations": [], "Conditions": [],
-                   "DiagnosticReports": [], "AllergyIntolerances": [], "Observations":[]}
+                   "DiagnosticReports": [], "AllergyIntolerances": [], "Observations": []}
     jsonFile = open(filename, "r")
     jsonString = jsonFile.read()
     dict = json.loads(jsonString)
@@ -40,7 +41,7 @@ def addPatient(filename):
         if i in patientDict["PatientInfo"]:
             patientAttributes.update({i: patientDict["PatientInfo"][i]})
 
-    patientAttributes.update(({'birthYear':int(patientDict["PatientInfo"]["birthDate"][:4])}))
+    patientAttributes.update(({'birthYear': int(patientDict["PatientInfo"]["birthDate"][:4])}))
 
     # marital status
     patientAttributes.update({'maritalStatus': patientDict["PatientInfo"]["maritalStatus"]["text"]})
@@ -73,19 +74,19 @@ def addPatient(filename):
             elif i["resource"]["code"]["text"] == "Body Mass Index":
                 bmi = max(bmi, i["resource"]["valueQuantity"]["value"])
     if weight != 0:
-        patientAttributes.update({"weight" : weight})
+        patientAttributes.update({"weight": weight})
     if height != 0:
-        patientAttributes.update({"height" : height})
+        patientAttributes.update({"height": height})
     if bmi != 0:
-        patientAttributes.update({"bmi" : bmi})
+        patientAttributes.update({"bmi": bmi})
     patientAttributes.update({"AllergyIntoleranceNumber": len(patientDict["AllergyIntolerances"])})
     patientAttributes.update({"ImmunizationNumber": len(patientDict["Immunizations"])})
 
     patients.append(patientAttributes)
 
 
-def populate():
-    for i in os.listdir("fhir")[:900]:  # for the first 100 patients in the dataset
+def populate(n):
+    for i in os.listdir("fhir")[:n]:  # for the first n patients in the dataset
         addPatient("fhir/" + i)
 
 
@@ -96,12 +97,16 @@ def getDataCollection(varx, vary):
             collection.append((i[varx], i[vary]))
     return collection
 
-def getMetaData(varx, vary):
-    return None
 
-populate()
+def discrete(varx):
+    return varx in ["gender", "multipleBirthBoolean", "maritalStatus", "languageCode", "country"]
 
-#TODO - read birthdate in as date not String
+
+
+n=900
+populate(n)
+
+# TODO - read birthdate in as date not String
 
 discreteValues = ["gender", "multipleBirthBoolean", "maritalStatus", "languageCode", "country"]
 continuousValues = ["birthYear", "AllergyIntoleranceNumber", "ImmunizationNumber", "weight", "height", "bmi"]
